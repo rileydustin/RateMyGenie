@@ -1,0 +1,82 @@
+.rateBox {
+    background-color: #FFFFFF;
+    font-family: sans-serif;
+    width: 300px;
+    text-align: center;
+    padding: 0;
+    border: 1px solid gray;
+}
+
+.rateButton {
+}
+
+.showRating {
+    font-family: sans-serif;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    color: white;
+}
+
+.sub {
+    color: #2f403f;
+}
+
+.name {
+    font-weight: bold;
+    display: block;
+    position: relative;
+    padding: 3px;
+    width: 100%;
+    color: #003366;
+    text-align: center;
+}
+
+.name a {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+.name a:visited {
+    font-size: 1.2em;
+    text-decoration: none;
+    color: dodgerblue;
+}
+
+
+.name a:link {
+    text-decoration: none;
+    font-size: 1.2em;
+    color: dodgerblue;
+}
+
+
+.title {
+    font-weight: bold;
+    position: relative;
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+    padding: 3px;
+    color: #003366;
+}
+
+.hide {
+    display: none;
+}
+
+.rating {
+    color: green;
+}
+
+.good {
+    color: green;
+}
+
+.okay {
+    color: orange;
+}
+
+.bad {
+    color: red;
+}

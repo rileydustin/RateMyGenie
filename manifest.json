@@ -1,0 +1,25 @@
+{
+  "manifest_version": 2,
+  "name": "RateMyGenie",
+  "description": "This extension will show you the RateMyProfessor's rating on the UNCG Genie page",
+  "version": "1.0",
+  "author": "David Santana",
+  "page_action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": [
+    "http://www.ratemyprofessors.com/*",
+    "tabs"
+  ],
+  "background": {
+    "scripts": ["eventscript.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://banweb.uncg.edu/prod/bwskfcls.P_GetCrse"],
+      "css" : ["main.css"],
+      "js": ["core.js"]
+    }
+  ]
+}
