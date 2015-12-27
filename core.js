@@ -29,9 +29,9 @@ function loadProfessorData(div) {
         if (!success){
             // try a different variation of their name?
             var splitNames = div.profName.split(' ');
-            if (splitNames.length >= 2) {
-                var name = splitNames[0] + '+' + splitNames[1];
-                var url = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=university+of+north+carolina+at+greensboro&queryoption=HEADER&query=' + name + '&facetSearch=true';
+            if (splitNames.length > 2) {
+                var name = splitNames[0] + '+' + splitNames[name.length - 2] + '+' + splitNames[name.length - 1];
+                var url = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=miami+university&queryoption=HEADER&query=' + name + '&facetSearch=true';
                 chrome.runtime.sendMessage({url: url}, function(response) {
                     response= response.replace('http://blog.ratemyprofessors.com/wp-content/uploads/2015/01/WNOs6.5_RMP_72x72.jpg', '');
                     if (!getProfessorData(div, response)) {
@@ -40,6 +40,10 @@ function loadProfessorData(div) {
                         div.removeEventListener('click', getRating);
                     }
                 });
+            }
+            else {
+              div.innerHTML = 'Not found ):';
+              div.removeEventListener('click', getRating);
             }
         }
     });
@@ -151,21 +155,29 @@ if (tables.length === 1) {
 
     for (var i = 2; i < courses.length; i++) {
         // the 19th element has the professor's name
-        var text = courses[i].children[19].innerText;
+        if(courses[i].children.length < 16)
+          continue;
+        var text = courses[i].children[16].innerText;
         if (text === "TBA")
             continue;
 
+        if(~text.indexOf(','))
+            text = text.substr(0, text.indexOf(','));
+
         // all of them have some sort of (P) tag on them, so remove it
-        var name = text.substr(0, text.indexOf(' ('));
+        if(~text.indexOf(' ('))
+            text = text.substr(0, text.indexOf(' ('));
+
+        var name = text;
         var fullName = name;
         var names = name.split(' ');
 
         if (names.length > 2)
-            name = names[0] + '+' + names[2];
+            name = names[0] + '+' + names[names.length - 1];
         else
             name = name.replace(' ', '+');
 
-        var url = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=university+of+north+carolina+at+greensboro&queryoption=HEADER&query=' + name + '&facetSearch=true';
+        var url = 'http://www.ratemyprofessors.com/search.jsp?queryBy=teacherName&schoolName=miami+university&queryoption=HEADER&query=' + name + '&facetSearch=true';
 
         var div = document.createElement('div');
         div.show = true;
@@ -174,6 +186,6 @@ if (tables.length === 1) {
         div.className = 'rateButton';
         div.url = url;
         div.addEventListener("click", getRating);
-        courses[i].children[19].appendChild(div);
+        courses[i].children[16].appendChild(div);
     }
 }

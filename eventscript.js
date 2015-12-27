@@ -1,5 +1,5 @@
 function showPage(id, info, tab) {
-    if (tab.url == "https://banweb.uncg.edu/prod/bwskfcls.P_GetCrse") {
+    if (tab.url == "https://bannerweb.miamioh.edu/pls/banweb/bwskfcls.P_GetCrse_Advanced") {
         chrome.pageAction.show(id);
     }
 }

@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "RateMyGenie",
-  "description": "This extension will show you the RateMyProfessor's rating on the UNCG Genie page",
-  "version": "1.0",
-  "author": "David Santana",
+  "name": "RateMyProfBanner",
+  "description": "This extension will show you the RateMyProfessor's rating on the Miami University Banner page",
+  "version": "2.0",
+  "author": "Original by David Santana. Updated with permission by Dustin Riley",
   "page_action": {
     "default_icon": "icon.png"
   },
@@ -17,7 +17,7 @@
   },
   "content_scripts": [
     {
-      "matches": ["https://banweb.uncg.edu/prod/bwskfcls.P_GetCrse"],
+      "matches": ["https://bannerweb.miamioh.edu/pls/banweb/bwskfcls.P_GetCrse_Advanced"],
       "css" : ["main.css"],
       "js": ["core.js"]
     }
